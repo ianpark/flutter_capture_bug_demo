@@ -34,6 +34,7 @@ class _CaptureFailureDemoPageState extends State<CaptureFailureDemoPage> {
   }
 
   void addResult(size) {
+    if (imageFile == null) return;
     triedCount++;
     if (size < 200000) {
       totalFailureByteSize += size;
@@ -101,19 +102,19 @@ class _CaptureFailureDemoPageState extends State<CaptureFailureDemoPage> {
     int avgFailSize =
         failedCount > 0 ? (totalFailureByteSize / (failedCount)).toInt() : 0;
     return Text(
-        "Fail%=$failRate  avgSuccSize=$avgSuccSize avgFailSize=$avgFailSize");
+        "tried=$triedCount failed=$failedCount fail%=$failRate\navgSuccSize=$avgSuccSize avgFailSize=$avgFailSize");
   }
 
   Widget getButtons() {
     return Row(children: [
       RaisedButton(
-        child: Text('Load Image'),
+        child: Text('Load'),
         onPressed: () {
           openGallery(context);
         },
       ),
       RaisedButton(
-        child: Text('Start Test'),
+        child: Text('Loop'),
         onPressed: () async {
           results = "";
           repeatTest = true;
@@ -124,11 +125,21 @@ class _CaptureFailureDemoPageState extends State<CaptureFailureDemoPage> {
         },
       ),
       RaisedButton(
-        child: Text('Stop Test'),
+        child: Text('Stop'),
         onPressed: () {
           setState(() {
             repeatTest = false;
           });
+        },
+      ),
+      RaisedButton(
+        child: Text('Clear'),
+        onPressed: () async {
+          triedCount = 0;
+          failedCount = 0;
+          totalSuccessByteSize = 0;
+          totalFailureByteSize = 0;
+          setState(() {});
         },
       )
     ]);
