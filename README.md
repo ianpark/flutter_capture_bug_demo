@@ -1,3 +1,5 @@
+### Flutter capture bug demo
+
 This test app demonstrates the `toImage()` failure that appeared after `v1.7.8+hotfix.4`. 
 
 - The problem is, `toImage()` occasionally fails to return the fully captured image but partially or completely empty image.
