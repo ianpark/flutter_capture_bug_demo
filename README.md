@@ -1,16 +1,22 @@
-# capture_error_demo
+This test app demonstrates the `toImage()` failure that appeared after `v1.7.8+hotfix.4`. 
 
-A new Flutter project.
+- The problem is, `toImage()` occasionally fails to return the fully captured image but partially or completely empty image.
 
-## Getting Started
+- When there are multiple images in `Stack()` widget, `toImage()` could only capture one or two images and return the incomplete result. This is very difficult to reproduce, however definitely happens. I suspect the root cause is some sort of memory constraints. 
 
-This project is a starting point for a Flutter application.
+Please check the following thread for further detail.
+https://github.com/flutter/flutter/issues/17687
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### Steps to reproduce
+1. make sure you are on stage channel and version `1.9.1+hotfix.2` or other higher versions.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+2. flutter run
+
+3. load a large image. 2MB should be probably enough but it all depends on the performance
+
+4. Press the blue save button or the grey save button multiple time until you see the fail% increase.
+
+Note that "Start Test" and "Stop Test" are added to prove that this problem is not reproducible by calling `toImage()` multiple times in a loop without UI interaction.
+
+The blue save button and the gery one calls the same function. 
