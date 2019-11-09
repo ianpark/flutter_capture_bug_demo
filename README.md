@@ -7,8 +7,9 @@ This test app demonstrates the `toImage()` failure that appeared after `v1.7.8+h
 - When there are multiple images in `Stack()` widget, `toImage()` could only capture one or two images and return the incomplete result. This is very difficult to reproduce, however definitely happens. I suspect the root cause is some sort of memory constraints. 
 
 Please check the following thread for further detail.
-https://github.com/flutter/flutter/issues/17687
 
+https://github.com/flutter/flutter/issues/17687
+https://github.com/flutter/flutter/issues/43085
 
 ### Steps to reproduce
 1. make sure you are on stage channel and version `1.9.1+hotfix.2` or other higher versions.
