@@ -1,3 +1,9 @@
+### Update!
+This bug is fixed in v1.10.16 which is now (17th Nov 2019) on dev channel.
+
+https://flutter.dev/docs/development/tools/sdk/releases?tab=macos
+
+
 ### Flutter capture bug demo
 
 This test app demonstrates the `toImage()` failure that appeared after `v1.7.8+hotfix.4`. 
